@@ -1,13 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
 })
-export class AppComponent {
+export class HomeComponent implements OnInit {
   constructor(private router: Router) {}
+
+  ngOnInit(): void {}
 
   onSecondModuleSecondComponentClick() {
     this.router.navigate(['/first-module/second-module/second-component']);

@@ -1,22 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 import { FirstComponent } from './components/first/first.component';
 import { SecondComponent } from './components/second/second.component';
-import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    pathMatch: 'full',
-    component: HomeComponent,
+    children: [
+      {
+        path: 'first-component',
+        component: FirstComponent,
+      },
+      {
+        path: 'second-component',
+        component: SecondComponent,
+      },
+    ],
   },
-  { path: 'app-first', component: FirstComponent },
-  { path: 'app-second', component: SecondComponent },
   {
-    path: 'first-module',
+    path: 'second-module',
     loadChildren: () =>
-      import('./modules/first/first.module').then((mod) => mod.FirstModule),
+      import('./modules/second/second.module').then((mod) => mod.SecondModule),
   },
   {
     path: '**',
@@ -25,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class FirstRoutingModule {}
